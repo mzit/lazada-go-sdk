@@ -1,4 +1,4 @@
-module lazada-go-sdk
+module github.com/mzit/lazada-go-sdk
 
 go 1.16
 
