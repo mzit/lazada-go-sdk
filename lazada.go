@@ -19,14 +19,14 @@ import (
 
 var json = jsoniter.ConfigCompatibleWithStandardLibrary
 
-type paramsMap map[string]string
-type fileParamsMap map[string][]byte
+type ParamsMap map[string]string
+type FileParamsMap map[string][]byte
 
 //Client 拥有的方法
 type Client interface {
-	GetOrders(paramsMap) (*GetOrdersResponse, error)
-	GetOrderItems(paramsMap) (*GetOrderItemsResponse, error)
-	GetOrder(paramsMap) (*GetOrderResponse, error)
+	GetOrders(ParamsMap) (*GetOrdersResponse, error)
+	GetOrderItems(ParamsMap) (*GetOrderItemsResponse, error)
+	GetOrder(ParamsMap) (*GetOrderResponse, error)
 	//todo others
 }
 
@@ -40,9 +40,9 @@ type LazadaClient struct {
 	AppKey     string
 	Secret     string
 	Method     string
-	SysParams  paramsMap
-	APIParams  paramsMap
-	FileParams fileParamsMap
+	SysParams  ParamsMap
+	APIParams  ParamsMap
+	FileParams FileParamsMap
 	Region     string
 }
 
@@ -135,7 +135,7 @@ func (lc *LazadaClient) getPath(apiName string) string {
 }
 
 // Execute 发送请求
-func (lc *LazadaClient) Execute(apiName string, httpMethod string, apiParams paramsMap, postBody fileParamsMap) (*Response, error) {
+func (lc *LazadaClient) Execute(apiName string, httpMethod string, apiParams ParamsMap, postBody FileParamsMap) (*Response, error) {
 	//获取url
 	pathUrl := lc.getPathUrl(apiName)
 	//签名
@@ -221,7 +221,7 @@ func (lc *LazadaClient) Execute(apiName string, httpMethod string, apiParams par
 	return resp, nil
 }
 
-func (lc *LazadaClient) GetOrder(apiParams paramsMap) (resp *GetOrderResponse, err error) {
+func (lc *LazadaClient) GetOrder(apiParams ParamsMap) (resp *GetOrderResponse, err error) {
 	b, err := lc.Execute("GetOrder", "GET", apiParams, nil)
 	if err != nil {
 		return
@@ -234,7 +234,7 @@ func (lc *LazadaClient) GetOrder(apiParams paramsMap) (resp *GetOrderResponse, e
 	return
 }
 
-func (lc *LazadaClient) GetOrderItems(apiParams paramsMap) (resp *GetOrderItemsResponse, err error) {
+func (lc *LazadaClient) GetOrderItems(apiParams ParamsMap) (resp *GetOrderItemsResponse, err error) {
 	b, err := lc.Execute("GetOrderItems", "GET", apiParams, nil)
 	if err != nil {
 		return
@@ -247,7 +247,7 @@ func (lc *LazadaClient) GetOrderItems(apiParams paramsMap) (resp *GetOrderItemsR
 	return
 }
 
-func (lc *LazadaClient) GetOrders(apiParams paramsMap) (resp *GetOrdersResponse, err error) {
+func (lc *LazadaClient) GetOrders(apiParams ParamsMap) (resp *GetOrdersResponse, err error) {
 	b, err := lc.Execute("GetOrders", "GET", apiParams, nil)
 	if err != nil {
 		return

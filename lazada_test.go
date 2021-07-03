@@ -19,7 +19,7 @@ func TestGetOrders(t *testing.T) {
 		Region: Region,
 	}
 	lc := NewClient(&clientOptions)
-	p := paramsMap{
+	p := ParamsMap{
 		"access_token":  accessToken,
 		"update_after":  "2021-06-25T15:59:32+07:00",
 		"update_before": "2021-06-25T16:12:31+07:00",
@@ -43,7 +43,7 @@ func TestGetOrder(t *testing.T) {
 		Region: Region,
 	}
 	lc := NewClient(&clientOptions)
-	p := paramsMap{
+	p := ParamsMap{
 		"access_token": accessToken,
 		"order_id":     "406948191627528",
 	}
@@ -64,7 +64,7 @@ func TestGetOrderItems(t *testing.T) {
 		Region: Region,
 	}
 	lc := NewClient(&clientOptions)
-	p := paramsMap{
+	p := ParamsMap{
 		"access_token": accessToken,
 		"order_id":     "406948191627528",
 	}
