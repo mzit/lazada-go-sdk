@@ -25,7 +25,7 @@ type FileParamsMap map[string][]byte
 //Client 拥有的方法
 type Client interface {
 	GetOrders(ParamsMap) (*GetOrdersResponse, error)
-	GetOrderItems(ParamsMap) (*GetOrderItemsResponse, error)
+	GetOrderItems(ParamsMap) ([]*OrderItem, error)
 	GetOrder(ParamsMap) (*GetOrderResponse, error)
 	//todo others
 }
@@ -234,7 +234,7 @@ func (lc *LazadaClient) GetOrder(apiParams ParamsMap) (resp *GetOrderResponse, e
 	return
 }
 
-func (lc *LazadaClient) GetOrderItems(apiParams ParamsMap) (resp *GetOrderItemsResponse, err error) {
+func (lc *LazadaClient) GetOrderItems(apiParams ParamsMap) (resp []*OrderItem, err error) {
 	b, err := lc.Execute("GetOrderItems", "GET", apiParams, nil)
 	if err != nil {
 		return
