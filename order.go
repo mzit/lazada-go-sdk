@@ -124,10 +124,6 @@ type OrderItem struct {
 	Status                string  `json:"status"`
 }
 
-type GetOrderItemsResponse []struct {
-	OrderItem
-}
+type GetOrderItemsResponse []OrderItem
 
-type GetOrderResponse struct {
-	Order
-}
+type GetOrderResponse Order
